@@ -1,0 +1,28 @@
+
+#06Dic2019
+#https://dev.to/gajesh/the-complete-flask-beginner-tutorial-124i
+
+#-------------
+# funzionaaa
+#------------
+
+# Imports the Flask from its library,
+from flask import Flask
+
+# the next line creates a variable name and instantiates the app using Flask class.
+# Crea l'istanza della classe
+app = Flask(__name__)
+
+# @app.route('/') (/ means the home page )
+# Here is the route: is used to redirect the user to a specific page
+# or perform a particular function when the user visit's a particular URL.
+# Example: @app.route('/login') redirects to login page.
+# The rest of the code display the Hello world.
+# But the method can do anything you would like it to do.
+@app.route('/')
+def hello_world():
+   return 'Hello, World!'
+
+app.run(debug=True)
+
+

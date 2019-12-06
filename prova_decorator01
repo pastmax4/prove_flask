@@ -1,0 +1,93 @@
+#https://www.thecodeship.com/patterns/guide-to-python-function-decorators/
+
+
+#---------------------------------------------
+#01 Assign functions to variables
+def greet_uno(name):
+    return "hello "+name
+
+#---------------------------------------------
+#02 Define functions inside other functions
+def greet_due(name):
+    def get_message():
+        return "Hello "
+
+    result = get_message()+name
+    return result
+
+
+#--------------------------------------------------
+#03 Functions can be passed as parameters to other functions
+def greet_03(name):
+   return "Hello " + name
+
+def call_func_03(func):
+    other_name = "John massimo 03"
+    return func(other_name)
+
+def call_func_prova03(func):
+    other_name = "John massimo 03 03"
+    my_var_02=func(other_name)
+    return my_var_02
+
+#-----------------------------------------------
+#04 Functions can return other functions
+# In other words, functions generating other functions.
+
+def compose_greet_func_04():
+    def get_message():
+        return "Hello there! from massimo 4"
+
+    return get_message
+
+#-----------------------------------------------
+#05 Composition of Decorators
+# Function decorators are simply wrappers to existing functions.
+# Putting the ideas mentioned above together, we can build a decorator.
+# In this example let's consider a function that wraps the string output
+# of another function by p tags.
+
+def get_text_05(name):
+   return "lorem ipsum, {0} dolor sit amet".format(name)
+
+def p_decorate_05(func):
+   def func_wrapper_05(name):
+       return "<p>{0}</p>".format(func(name))
+   return func_wrapper_05
+
+#-----------------------------------------------
+#-----------------------------------------------
+#-----------------------------------------------
+#01 Assign functions to variables
+my_var_01=greet_uno('massimo')
+print(my_var_01)
+
+#----------------------------------------------
+#01 Assign functions to variables
+greet_someone = greet_uno
+print(greet_someone("John"))
+
+#---------------------------------------------
+#02 Define functions inside other functions
+print(greet_due('massimo due'))
+
+#--------------------------------------------------
+#03 Functions can be passed as parameters to other functions
+print(call_func_03(greet_03))
+print(call_func_prova03(greet_03))
+
+#-----------------------------------------------
+#04 Functions can return other functions
+# In other words, functions generating other functions.
+greet_04 = compose_greet_func_04()
+print(greet_04())
+
+#-----------------------------------------------
+#05 Composition of Decorators
+# Function decorators are simply wrappers to existing functions.
+# Putting the ideas mentioned above together, we can build a decorator.
+# In this example let's consider a function that wraps the string output
+# of another function by p tags.
+my_get_text_05 = p_decorate_05(get_text_05)
+
+print(my_get_text_05("John 05"))
